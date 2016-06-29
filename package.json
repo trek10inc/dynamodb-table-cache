@@ -1,0 +1,27 @@
+{
+  "name": "dynamodb-table-cache",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trek10inc/dynamodb-table-cache.git"
+  },
+  "author": "trek10.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trek10inc/dynamodb-table-cache/issues"
+  },
+  "homepage": "https://github.com/trek10inc/dynamodb-table-cache#readme",
+  "dependencies": {
+    "aws-sdk": "^2.4.3",
+    "lambda-local-cache": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
