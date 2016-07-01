@@ -1,6 +1,6 @@
 {
   "name": "dynamodb-table-cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "homepage": "https://github.com/trek10inc/dynamodb-table-cache#readme",
   "dependencies": {
     "aws-sdk": "^2.4.3",
-    "lambda-local-cache": "^1.0.0"
+    "lambda-local-cache": "latest"
   },
   "devDependencies": {
     "chai": "^3.5.0",
