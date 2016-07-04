@@ -3,7 +3,6 @@
 let cache       = require('lambda-local-cache');
 let aws         = require('aws-sdk');
 
-
 class DynamoTableCache {
 
     /**
@@ -21,7 +20,8 @@ class DynamoTableCache {
         if (!awsConfig) awsConfig = {};
         if (!table) throw new Error('table name must be provided');
         if (!options.indexes.length) throw new Error('indexes must be provided');
-        
+
+        this._logger       = options.logger || console;
         this._table        = table;
         this._options      =  options;
         this._primaryIndex = options.indexes[0];
@@ -37,7 +37,7 @@ class DynamoTableCache {
                 if(err) throw err;
 
                 this._cache.set(data.Items, this._options.expire);
-                console.log(this._table + ' table fetched successfully');
+                this._logger.info(this._table + ' table fetched successfully');
                 resolve();
             });
         });
@@ -66,7 +66,7 @@ class DynamoTableCache {
             this._dbc.query(params, (err, data) => {
                 if(err) return reject(err);
                 else resolve(data.Items[0]);
-                console.log('get from DB');
+                this._logger.info("get from DB");
             }); 
         });
     }
@@ -81,7 +81,7 @@ class DynamoTableCache {
             return new Promise((resolve, reject) => {
                 let result = this._getFromCache(key, indexName);
                 if (result) {
-                    console.log('get from cache');
+                    this._logger.info('get from cache');
                     return resolve(result);
                 }
 
@@ -116,7 +116,7 @@ class DynamoTableCache {
      * */
     remove(key, indexName) {
         this._cache.remove(key, indexName);
-        console.log('removed...')
+        this._logger.info('removed...');
     }
 
     /**
@@ -124,7 +124,7 @@ class DynamoTableCache {
      * */
     clear() {
         this._cache.clear();
-        console.log('clearing cache...');
+        this._logger.info('clearing cache...');
 
     }
 }
