@@ -76,7 +76,6 @@ class DynamoTableCache {
      * @param {String} indexName (required) - default is primary index
      * */
     get(key, indexName) {
-
         let doGet = () => {
             return new Promise((resolve, reject) => {
                 let result = this._getFromCache(key, indexName);
